@@ -1,0 +1,18 @@
+{
+  "name": "zfchat",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "zhufengnodejs <zhufengnodejs@126.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ]
+}
