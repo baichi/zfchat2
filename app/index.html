@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="chatMod">
 <head>
     <meta charset="UTF-8">
     <title>珠峰聊天室</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
+<div class="container" ng-view>
 
-<script src="node_modules/jquery/dist/jquery.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-<script src="node_modules/angular/angular.js"></script>
-<script src="node_modules/angular-route/angular-route.js"></script>
+</div>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../node_modules/angular/angular.js"></script>
+<script src="../node_modules/angular-route/angular-route.js"></script>
+<script>
+    angular.module('chatMod', ['ngRoute'])
+            .config(function ($routeProvider) {
+                $routeProvider.when('/', {
+                    templateUrl: 'pages/login.html',
+                    controller: 'LoginCtrl'
+                }).when('/rooms', {
+                    templateUrl: 'pages/rooms.html',
+                    controller: 'RoomsCtrl'
+                }).otherwise({
+                    redirectTo: '/'
+                })
+            }).controller('LoginCtrl', function () {
 
+    }).controller('RoomsCtrl', function () {
+
+    });
+</script>
 </body>
 </html>
