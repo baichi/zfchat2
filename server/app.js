@@ -1,7 +1,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var User = require('../db').User;
 var app = express();
 app.use(bodyParser.json());
+app.use(session({
+    secret:'zfpx',
+    resave:true,
+    saveUninitialized:true
+}));
 app.use(function(req,res,next){
     res.setHeader('Access-Control-Allow-Origin','*');
     res.setHeader('Access-Control-Allow-Headers','Content-Type');
@@ -14,5 +21,24 @@ app.all('*',function(req,res){
      1.先引入monoose 2. 连接数据库 3. 定义UserSchema 4.定义UserModel
      5. 用UserModel查询此邮箱是否有对应的用户，如果有则直接写入session,如果没有则把此用户保存到数据库中，再写入session,最后返回成功消息 {code:1,data:user}
     */
+   User.findOne(user,function(err,doc){
+        if(err){
+            res.send({code:'fail',data:err});
+        }else{
+            if(doc){
+                req.session.user = doc;
+                res.send({code:'success',data:doc});
+            }else{
+                User.create(user,function(err,doc){
+                    if(err){
+                        res.send({code:'fail',data:err});
+                    }else{
+                        req.session.user = doc;
+                        res.send({code:'success',data:doc});
+                    }
+                })
+            }
+        }
+   });
 });
 app.listen(3000);
