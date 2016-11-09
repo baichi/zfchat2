@@ -25,11 +25,21 @@
                 }).otherwise({
                     redirectTo: '/'
                 })
-            }).controller('LoginCtrl', function () {
+            }).controller('LoginCtrl', function ($scope,$http) {
+                $scope.login = function(){
+                    // $http = $.ajax
+                    $http({
+                        url:'http://localhost:3000/login',
+                        method:'POST',
+                        data:{email:$scope.email},
+                        success:function(data){
+                            console.log(data);
+                        }
+                    });
+                }
+           }).controller('RoomsCtrl', function () {
 
-    }).controller('RoomsCtrl', function () {
-
-    });
+           });
 </script>
 </body>
 </html>
