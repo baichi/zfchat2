@@ -20,5 +20,14 @@ bower安装的库的存放文件夹
 ```
 bower init 
 ```
+5. 安装前后台依赖的模块
+前台代码库
+```
+npm install angular angular-route angular-moment jquery bootstrap --save
+```
 
+后台代码库
+```
+npm install express socket.io cookie-parser express-session mongoose --save
+```
 
